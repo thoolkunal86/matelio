@@ -5,6 +5,8 @@ Assessment
 
 git clone https://github.com/thoolkunal86/matelio
 
+change .env variables for databse and other changes
+
 $ cd backend
 
 $ npm install
@@ -12,8 +14,6 @@ $ npm install
 $ npx sequelize-cli db:migrate
 
 $ npx sequelize-cli db:seed:all
-
-change .env variables
 
 $ npm start
 
