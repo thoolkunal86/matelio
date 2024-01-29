@@ -22,9 +22,10 @@ const authSlice = createSlice({
          * @param Object actions 
          */
         setCreds: (state, actions) => {
-            const {values, token} = actions.payload; 
+            const {values, token, refreshToken} = actions.payload; 
             state.user = values;
             state.token = token;
+            state.refreshToken = refreshToken;
         },
         /**
          * Logout reset user and token
@@ -35,6 +36,7 @@ const authSlice = createSlice({
         logout: (state, actions) => {
             state.user = null;
             state.token = null;
+            state.refreshToken = null;
         }
     }
 });

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { success, validation } = require('../helpers/response');
 const userLoginValidator = require('../validations/authValidator');
-const authController = require('../controllers/authController');
+const { refteshTokenController, authController } = require("../controllers/authController");
 
 // About page route.
 router.post("/login", function (req, res, next) {
@@ -21,5 +21,12 @@ router.post("/login", function (req, res, next) {
     next();
   
 }, authController);
+
+
+router.get("/refresh-token/:token", function (req, res, next) {
+   
+    next();
+  
+}, refteshTokenController);
 
 module.exports = router;

@@ -39,11 +39,15 @@ const baseQuery = fetchBaseQuery({
 const baseQueryWithRefreshAuth = async(args, api, options) => {
     let results = await baseQuery(args, api, options);
 
-    if (results?.error?.originalStatus == 403) {
+    if (results?.error?.status == 401) {
         console.log("Refreshing Token");
         
         //if token expires send request for refresh token
-        const refreshToken = await baseQuery('/refresh-token');
+        const refreshToken = await baseQuery(
+            '/refresh-token/' + api.getState().auth.refreshToken, 
+            api,
+            options
+        );
         console.log(refreshToken);
 
         if (refreshToken?.data) {
@@ -66,6 +70,6 @@ const baseQueryWithRefreshAuth = async(args, api, options) => {
 export const apiSlice = createApi(({
     baseQuery: baseQueryWithRefreshAuth,
     endpoints: builder => ({
-        
+
     })
 }));
